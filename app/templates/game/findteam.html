@@ -1,0 +1,37 @@
+{% extends "game/gamebase.html" %}
+
+{% block page_content_main %}
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="{{ url_for('game.editteam',teamid='0') }}">创建新的约球</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row clearfix">
+        {% for team in teams %}
+            <div class="col-md-4">
+                <a href="{{ url_for('game.gameinfo',teamid=team.id) }}">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>
+                                {{ team.PlayTitle }}
+                            </h3>
+                            <p>
+                                {{ team.PlayInfo }}
+                            </p>
+                            <p>
+                                {% if team.isjoined(current_user) %}
+                                    <a class="btn btn-default"
+                                       href="{{ url_for('game.quitteam',teamid=team.id) }}">退出</a>
+                                {% else %}
+                                    <a class="btn btn-primary"
+                                       href="{{ url_for('game.jointeam',teamid=team.id) }}">感兴趣</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

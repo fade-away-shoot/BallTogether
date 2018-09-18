@@ -1,0 +1,78 @@
+{% extends 'userdomain/userbase.html' %}
+
+{% block page_content_main %}
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a href="{{ url_for('userdomain.useredit',username=user.UserName) }}">
+                        <img height="180px" width="180px" src="{{ img_url }}">
+                        <div class="caption">
+                            <p>更新自己的资料</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-8">
+                    <h3 style="color:#005eac;background-color: #eaeef0;border-top-color: #bcc4cb;border-top-style: solid;border-top-width: 1px;font-size: 14px;height: 25px;text">{{ user.UserName }}
+                        <small>约球次数</small>
+                    </h3>
+                    <h5>所在地：{{ user.Location }}</h5>
+                    <h5>打球频次：{{ user.PlayFre }}</h5>
+                    <h5>常打球地点：{{ user.OftenWhere }}</h5>
+                    <h5>常打球时间：{{ user.OftenTime }}</h5>
+                    <h5>加入时间：{{ user.MemberDate }}</h5>
+                    <h5>上次登录时间：{{ user.Lastseen }}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>能力值</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>约球记录</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>秀球技</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>留言板</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <h5>我关注的人</h5>
+                {% for key in  dicfollowed%}
+                    <div class="col-xs-3">
+                        <a href="{{ url_for('userdomain.usermain',username=key) }}">
+                            <img height="60px" width="60px" src="{{ dicfollowed[key] }}">
+                            <div class="caption">
+                                <p>{{ key }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <h5>关注我的人</h5>
+                {% for key in  dicfollower%}
+                    <div class="col-xs-3">
+                        <a href="{{ url_for('userdomain.usermain',username=key) }}">
+                            <img height="60px" width="60px" src="{{ dicfollower[key] }}">
+                            <div class="caption">
+                                <p>{{ key }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

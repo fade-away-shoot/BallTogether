@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-xs-2">
+            <ul class="nav nav-pills nav-stacked" style="background-color: darkgray;text-align: center">
+                <li class="active"><a href="#">主页</a></li>
+                <li><a href="#">能力值</a></li>
+                <li><a href="#">约球记录</a></li>
+                <li><a href="#">留言板</a></li>
+                <li><a href="#">秀球技</a></li>
+                <li><a href="#">关注</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-10">
+            {% block page_content_main %}
+
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
+

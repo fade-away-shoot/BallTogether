@@ -1,0 +1,19 @@
+{% extends 'userdomain/userbase.html' %}
+
+{% block page_content_main %}
+    <div class="col-md-4">
+        <h5>头像</h5>
+
+        <a href="{{ url_for('userdomain.userimg',username=current_user.UserName) }}">
+            <img height="80px" width="80px" src="{{ img_url }}">
+            <div class="caption">
+                <p>更新头像</p>
+            </div>
+        </a>
+        {{ wtf.quick_form(form) }}
+
+
+    </div>
+
+
+{% endblock %}

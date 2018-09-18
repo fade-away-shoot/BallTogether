@@ -1,0 +1,44 @@
+{% extends 'game/gamebase.html' %}
+
+{% block page_content_main %}
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            {% if current_user.id == team.LeaderMan %}
+                <p class="text-right"><a class="btn btn-primary" href="{{ url_for('game.editteam',teamid=team.id) }}">编辑</a></p>
+            {% endif %}
+            <div class="jumbotron">
+
+                <h2>
+                    {{ team.PlayTitle }}
+                </h2>
+                <p>
+                    {{ team.PlayInfo }}
+                </p>
+                <p>
+                    {% if team.isjoined(current_user) %}
+                        <a class="btn btn-default btn-large" href="{{ url_for('game.quitteam',teamid=team.id) }}">退出</a>
+                    {% else %}
+                        <a class="btn btn-primary btn-large" href="{{ url_for('game.jointeam',teamid=team.id) }}">加入</a>
+                    {% endif %}
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <h3>已加入的各位大腿</h3>
+        {% for key in dicjoined %}
+            <div class="col-xs-2">
+                <a href="{{ url_for('userdomain.usermain',username=key) }}">
+                    <img height="60px" width="60px" src="{{ dicjoined[key] }}">
+                    <div class="caption">
+                        <p>{{ key }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

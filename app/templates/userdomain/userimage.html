@@ -1,0 +1,6 @@
+{% extends 'userdomain/userbase.html' %}
+
+{% block page_content_main %}
+    <img height="80px" width="80px" src="{{ img_url  }}">
+    {{ wtf.quick_form(form) }}
+{% endblock %}

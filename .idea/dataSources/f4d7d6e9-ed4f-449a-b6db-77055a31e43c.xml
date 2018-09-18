@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="data-dev.sqlite">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.8">
+    <root id="1">
+      <ServerVersion>3.20.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="alembic_version"/>
+    <table id="7" parent="2" name="follows"/>
+    <table id="8" parent="2" name="groundinfo"/>
+    <table id="9" parent="2" name="msgboard"/>
+    <table id="10" parent="2" name="playapplyrecord"/>
+    <table id="11" parent="2" name="playinfo"/>
+    <table id="12" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <table id="13" parent="2" name="sysparameter"/>
+    <table id="14" parent="2" name="user_ground"/>
+    <table id="15" parent="2" name="userbody"/>
+    <table id="16" parent="2" name="userinfo"/>
+    <table id="17" parent="2" name="userplay"/>
+    <table id="18" parent="2" name="userscore"/>
+    <table id="19" parent="2" name="userscorehistory"/>
+    <table id="20" parent="2" name="uservideo"/>
+    <column id="21" parent="6" name="version_num">
+      <Position>1</Position>
+      <DataType>VARCHAR(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="22" parent="6" name="sqlite_autoindex_alembic_version_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>version_num</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="23" parent="6" name="alembic_version_pkc">
+      <ColNames>version_num</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_alembic_version_1</UnderlyingIndexName>
+    </key>
+    <column id="24" parent="7" name="follower_id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="7" name="followed_id">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="7" name="timestamp">
+      <Position>3</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <index id="27" parent="7" name="sqlite_autoindex_follows_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>follower_id
+followed_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="28" parent="7">
+      <ColNames>follower_id
+followed_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_follows_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="29" parent="7">
+      <ColNames>follower_id</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="30" parent="7">
+      <ColNames>followed_id</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="31" parent="8" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="8" name="GroundName">
+      <Position>2</Position>
+      <DataType>VARCHAR(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="8" name="InOrOutDoor">
+      <Position>3</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="8" name="HaveLight">
+      <Position>4</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="8" name="IsFree">
+      <Position>5</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="8" name="Money">
+      <Position>6</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="37" parent="8" name="GroundType">
+      <Position>7</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="8" name="GroundOpenTime">
+      <Position>8</Position>
+      <DataType>TIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="8" name="GroundCloseTime">
+      <Position>9</Position>
+      <DataType>TIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="8" name="GroudWhere">
+      <Position>10</Position>
+      <DataType>VARCHAR|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="8" name="HaveShopNearBy">
+      <Position>11</Position>
+      <DataType>BOOLEAN|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="42" parent="8">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <check id="43" parent="8">
+      <Predicate>&quot;HaveShopNearBy&quot; IN (0, 1)</Predicate>
+    </check>
+    <check id="44" parent="8">
+      <Predicate>1 != 1</Predicate>
+    </check>
+    <column id="45" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="9" name="MasterId">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="9" name="MsgManId">
+      <Position>3</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="9" name="MsgContent">
+      <Position>4</Position>
+      <DataType>VARCHAR(500)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="9" name="MsgTime">
+      <Position>5</Position>
+      <DataType>DATETIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="50" parent="9">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="51" parent="9">
+      <ColNames>MasterId</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="52" parent="9">
+      <ColNames>MsgManId</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="53" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="54" parent="10" name="ApplyManId">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="10" name="PlayId">
+      <Position>3</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="10" name="ApllyTime">
+      <Position>4</Position>
+      <DataType>DATETIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="10" name="ApllyResult">
+      <Position>5</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="58" parent="10">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="59" parent="10">
+      <ColNames>ApplyManId</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="60" parent="10">
+      <ColNames>PlayId</ColNames>
+      <RefTableName>playinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="61" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="11" name="GroundId">
+      <Position>2</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="11" name="PlayType">
+      <Position>3</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="11" name="PlayStatus">
+      <Position>4</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+    </column>
+    <column id="65" parent="11" name="LeaderMan">
+      <Position>5</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="11" name="PlayTime">
+      <Position>6</Position>
+      <DataType>DATETIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="11" name="PlayTitle">
+      <Position>7</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+    </column>
+    <column id="68" parent="11" name="PlayInfo">
+      <Position>8</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="11" name="NeedManCount">
+      <Position>9</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="70" parent="11" name="Money">
+      <Position>10</Position>
+      <DataType>FLOAT|0s</DataType>
+    </column>
+    <column id="71" parent="11" name="WantMan">
+      <Position>11</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+    </column>
+    <column id="72" parent="11" name="Time">
+      <Position>12</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <key id="73" parent="11">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="74" parent="12" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="75" parent="12" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="76" parent="12" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="77" parent="12" name="rootpage">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="78" parent="12" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="79" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="80" parent="13" name="Code">
+      <Position>2</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="13" name="Value">
+      <Position>3</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="82" parent="13">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="83" parent="14" name="user_id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="14" name="ground_id">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="85" parent="14" name="sqlite_autoindex_user_ground_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id
+ground_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="86" parent="14">
+      <ColNames>user_id
+ground_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_user_ground_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="87" parent="14">
+      <ColNames>user_id</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="88" parent="14">
+      <ColNames>ground_id</ColNames>
+      <RefTableName>groundinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="89" parent="15" name="UserId">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="90" parent="15" name="Sex">
+      <Position>2</Position>
+      <DataType>VARCHAR(2)|0s</DataType>
+    </column>
+    <column id="91" parent="15" name="Age">
+      <Position>3</Position>
+      <DataType>VARCHAR(3)|0s</DataType>
+    </column>
+    <column id="92" parent="15" name="Position">
+      <Position>4</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+    </column>
+    <column id="93" parent="15" name="BallAge">
+      <Position>5</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="94" parent="15" name="Height">
+      <Position>6</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="95" parent="15" name="Weight">
+      <Position>7</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="96" parent="15" name="BodyFat">
+      <Position>8</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="97" parent="15" name="ArmSpan">
+      <Position>9</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="98" parent="15" name="TimeFor100m">
+      <Position>10</Position>
+      <DataType>TIME|0s</DataType>
+    </column>
+    <column id="99" parent="15" name="ReachJump">
+      <Position>11</Position>
+      <DataType>FLOAT|0s</DataType>
+    </column>
+    <key id="100" parent="15">
+      <ColNames>UserId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="101" parent="15">
+      <ColNames>UserId</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="102" parent="16" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="103" parent="16" name="Email">
+      <Position>2</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+    </column>
+    <column id="104" parent="16" name="RoleType">
+      <Position>3</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="105" parent="16" name="UserName">
+      <Position>4</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="106" parent="16" name="PhoneNum">
+      <Position>5</Position>
+      <DataType>VARCHAR(13)|0s</DataType>
+    </column>
+    <column id="107" parent="16" name="ShowPhoneNum">
+      <Position>6</Position>
+      <DataType>VARCHAR(1)|0s</DataType>
+    </column>
+    <column id="108" parent="16" name="PlayFre">
+      <Position>7</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="109" parent="16" name="OftenTime">
+      <Position>8</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="110" parent="16" name="OftenWhere">
+      <Position>9</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="111" parent="16" name="password_hash">
+      <Position>10</Position>
+      <DataType>VARCHAR(128)|0s</DataType>
+    </column>
+    <column id="112" parent="16" name="Location">
+      <Position>11</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="113" parent="16" name="MemberDate">
+      <Position>12</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <column id="114" parent="16" name="Lastseen">
+      <Position>13</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <column id="115" parent="16" name="confirmed">
+      <Position>14</Position>
+      <DataType>BOOLEAN|0s</DataType>
+    </column>
+    <index id="116" parent="16" name="ix_userinfo_Email">
+      <ColNames>Email</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="117" parent="16" name="ix_userinfo_UserName">
+      <ColNames>UserName</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="118" parent="16">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <check id="119" parent="16">
+      <Predicate>confirmed IN (0, 1)</Predicate>
+    </check>
+    <column id="120" parent="17" name="UserId">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="121" parent="17" name="PlayId">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="122" parent="17" name="UserSay">
+      <Position>3</Position>
+      <DataType>VARCHAR(200)|0s</DataType>
+    </column>
+    <column id="123" parent="17" name="timestamp">
+      <Position>4</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <index id="124" parent="17" name="sqlite_autoindex_userplay_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>UserId
+PlayId</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="125" parent="17">
+      <ColNames>UserId
+PlayId</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_userplay_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="126" parent="17">
+      <ColNames>UserId</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="127" parent="17">
+      <ColNames>PlayId</ColNames>
+      <RefTableName>playinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="128" parent="18" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="129" parent="18" name="UserId">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="130" parent="18" name="ComputeTime">
+      <Position>3</Position>
+      <DataType>DATETIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="131" parent="18" name="ScoreName">
+      <Position>4</Position>
+      <DataType>VARCHAR(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="132" parent="18" name="ScoreValue">
+      <Position>5</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="133" parent="18">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="134" parent="18">
+      <ColNames>UserId</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="135" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="136" parent="19" name="UserId">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="137" parent="19" name="PlayId">
+      <Position>3</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="138" parent="19" name="ScoreName">
+      <Position>4</Position>
+      <DataType>VARCHAR(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="139" parent="19" name="ScoreValue">
+      <Position>5</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="140" parent="19" name="ScoreTime">
+      <Position>6</Position>
+      <DataType>DATETIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="141" parent="19" name="ScoreMan">
+      <Position>7</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <key id="142" parent="19">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="143" parent="20" name="VideoId">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="144" parent="20" name="UserId">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="145" parent="20" name="VideoUrl">
+      <Position>3</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="146" parent="20">
+      <ColNames>VideoId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="147" parent="20">
+      <ColNames>UserId</ColNames>
+      <RefTableName>userinfo</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

@@ -1,0 +1,6 @@
+Dear {{userinfo.UserName}}
+欢迎来到一起约球！
+现在请点击下面的url验证你的账户
+{{url_for('auth.confirm',token=token,_external=True)}}
+来自，白巧克力
+注意：如果不是本人操作，请勿点击链接
